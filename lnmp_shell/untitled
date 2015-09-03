@@ -1,0 +1,17 @@
+sed -i 's#; extension_dir = \"\.\/\"#extension_dir = "/opt/server/php/lib/php/extensions/no-debug-non-zts-20121212/"#'  /opt/server/php/etc/php.ini
+sed -i 's/post_max_size = 8M/post_max_size = 64M/g' /opt/server/php/etc/php.ini
+sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 64M/g' /opt/server/php/etc/php.ini
+sed -i 's/;date.timezone =/date.timezone = PRC/g' /opt/server/php/etc/php.ini
+sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=1/g' /opt/server/php/etc/php.ini
+sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /opt/server/php/etc/php.ini
+#adjust php-fpm
+cp /opt/server/php/etc/php-fpm.conf.default /opt/server/php/etc/php-fpm.conf
+sed -i 's,user = nobody,user=www,g'   /opt/server/php/etc/php-fpm.conf
+sed -i 's,group = nobody,group=www,g'   /opt/server/php/etc/php-fpm.conf
+sed -i 's,^pm.min_spare_servers = 1,pm.min_spare_servers = 5,g'   /opt/server/php/etc/php-fpm.conf
+sed -i 's,^pm.max_spare_servers = 3,pm.max_spare_servers = 35,g'   /opt/server/php/etc/php-fpm.conf
+sed -i 's,^pm.max_children = 5,pm.max_children = 100,g'   /opt/server/php/etc/php-fpm.conf
+sed -i 's,^pm.start_servers = 2,pm.start_servers = 20,g'   /opt/server/php/etc/php-fpm.conf
+sed -i 's,;pid = run/php-fpm.pid,pid = run/php-fpm.pid,g'   /opt/server/php/etc/php-fpm.conf
+sed -i 's,;error_log = log/php-fpm.log,error_log = /home/log/php/php-fpm.log,g'   /opt/server/php/etc/php-fpm.conf
+sed -i 's,;slowlog = log/$pool.log.slow,slowlog = /home/log/php/\$pool.log.slow,g'   /opt/server/php/etc/php-fpm.conf
