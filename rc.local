@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# This script will be executed *after* all the other init scripts.
+# You can put your own initialization stuff in here if you don't
+# want to do the full Sys V style init stuff.
+
+touch /var/lock/subsys/local
+/etc/init.d/nginx start
+/etc/init.d/php-fpm start
+/etc/init.d/mysqld start
+/usr/local/webserver/memcached/bin/memcached -d -u root  -p 11211  -P /tmp/memcached.pid
+/usr/local/webserver/mongodb/bin/mongod --port 27017 --fork  --dbpath=/home/logs/mongodb  --logpath=/home/logs/mongodb/mongodb.log --logappend --journal
+/etc/init.d/rabbitmq-server start
+
