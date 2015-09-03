@@ -1,0 +1,6 @@
+
+location ~ /\.svn($|/) {
+    deny all;
+}
+
+
