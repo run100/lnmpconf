@@ -1,0 +1,12 @@
+Host 108
+    HostName  108.186.193.4
+    Port 22
+    User run
+Host 122
+    HostName  122.10.121.68
+    Port 22
+    User run
+Host  198
+    HostName  198.11.183.232
+    Port 22
+    User run
